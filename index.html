@@ -276,124 +276,168 @@
       </div>
 
       <!-- ===================================================================== -->
-      <!-- INTERACTIVE DASHBOARD MOCKUP (Sản phẩm thật, không dùng ảnh stock) -->
+      <!-- 3 DỰ ÁN TIÊU BIỂU (3 REAL ENTERPRISE PROJECT SHOWCASE VIEWS) -->
       <!-- ===================================================================== -->
       <div class="relative max-w-5xl mx-auto mt-12">
-        <!-- Glow effect behind frame -->
-        <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-primary/30 to-brand-primary/10 rounded-2xl blur-lg"></div>
 
-        <!-- Dashboard Container -->
+        <!-- Project Selector Navigation (Tabs + Carousel Controls) -->
+        <div class="mb-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+          <!-- 3 Project Pills -->
+          <div class="flex items-center bg-slate-100/95 p-1 rounded-2xl border border-slate-200/90 shadow-inner overflow-x-auto" role="tablist" aria-label="Project selector">
+            <!-- Project 1 Button -->
+            <button onclick="switchProjectView(0)" id="project-btn-0" class="project-pill px-3.5 sm:px-4 py-2 rounded-xl bg-white text-brand-navy shadow-sm border border-brand-border font-bold text-xs sm:text-sm flex items-center gap-2 transition-all whitespace-nowrap" role="tab" aria-selected="true">
+              <span class="text-base">🚢</span>
+              <div class="text-left leading-tight">
+                <div class="text-[10px] text-brand-primary uppercase font-bold tracking-wider" data-i18n="proj.p1.badge">DỰ ÁN 01 · LOGISTICS B2B</div>
+                <div class="font-bold text-brand-navy" data-i18n="proj.p1.title">Hoàng Gia Supply Chain CRM</div>
+              </div>
+            </button>
+            <!-- Project 2 Button -->
+            <button onclick="switchProjectView(1)" id="project-btn-1" class="project-pill px-3.5 sm:px-4 py-2 rounded-xl text-slate-600 hover:text-brand-navy hover:bg-white/60 font-medium text-xs sm:text-sm flex items-center gap-2 transition-all whitespace-nowrap" role="tab" aria-selected="false">
+              <span class="text-base">🏦</span>
+              <div class="text-left leading-tight">
+                <div class="text-[10px] text-slate-500 uppercase font-bold tracking-wider" data-i18n="proj.p2.badge">DỰ ÁN 02 · FINTECH & BANKING</div>
+                <div class="font-medium text-brand-navy" data-i18n="proj.p2.title">V-Bank Churn Risk Radar</div>
+              </div>
+            </button>
+            <!-- Project 3 Button -->
+            <button onclick="switchProjectView(2)" id="project-btn-2" class="project-pill px-3.5 sm:px-4 py-2 rounded-xl text-slate-600 hover:text-brand-navy hover:bg-white/60 font-medium text-xs sm:text-sm flex items-center gap-2 transition-all whitespace-nowrap" role="tab" aria-selected="false">
+              <span class="text-base">🛍️</span>
+              <div class="text-left leading-tight">
+                <div class="text-[10px] text-slate-500 uppercase font-bold tracking-wider" data-i18n="proj.p3.badge">DỰ ÁN 03 · BÁN LẺ ĐA KÊNH</div>
+                <div class="font-medium text-brand-navy" data-i18n="proj.p3.title">Tân Phát 360° Sales Copilot</div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Carousel Controls: Dots & Prev/Next Arrows -->
+          <div class="flex items-center justify-between md:justify-end gap-3 px-1">
+            <div class="flex items-center gap-1.5" id="project-dots">
+              <span class="w-3 h-2.5 rounded-full bg-brand-primary transition-all cursor-pointer" onclick="switchProjectView(0)" title="Dự án 1"></span>
+              <span class="w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all cursor-pointer" onclick="switchProjectView(1)" title="Dự án 2"></span>
+              <span class="w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all cursor-pointer" onclick="switchProjectView(2)" title="Dự án 3"></span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button onclick="stepProjectView(-1)" class="p-2 rounded-lg bg-white hover:bg-slate-100 border border-slate-200 text-brand-navy shadow-sm transition-all focus:outline-none" aria-label="Previous project" title="Dự án trước">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button onclick="stepProjectView(1)" class="p-2 rounded-lg bg-white hover:bg-slate-100 border border-slate-200 text-brand-navy shadow-sm transition-all focus:outline-none" aria-label="Next project" title="Dự án tiếp theo">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Glow effect behind frame -->
+        <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-primary/30 to-brand-primary/10 rounded-2xl blur-lg -z-10"></div>
+
+        <!-- Mockup Window Frame -->
         <div class="relative rounded-2xl bg-white border border-brand-border shadow-2xl overflow-hidden">
           
           <!-- Mockup Window Bar -->
-          <div class="bg-brand-navy px-4 py-3 border-b border-brand-navyLight flex items-center justify-between">
+          <div class="bg-brand-navy px-4 py-3 border-b border-brand-navyLight flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center space-x-2">
               <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
               <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
               <span class="w-3 h-3 rounded-full bg-brand-accentGreen"></span>
-              <span class="ml-3 text-xs font-mono text-slate-300">easyai-crm.internal/portal/enterprise-analytics</span>
+              <span id="project-mockup-url" class="ml-3 text-xs font-mono text-slate-300">logistics-crm.easyai.internal/pipeline-automation</span>
             </div>
             <div class="flex items-center space-x-3 text-xs text-slate-300">
               <span class="inline-flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-brand-accentGreen animate-pulse"></span>
-                <span class="font-mono text-white">AI Engine: v4.2 Active</span>
+                <span id="project-mockup-status" class="font-mono text-white" data-i18n="proj.p1.status">AI Engine: v4.2 Active · Oracle ERP</span>
               </span>
             </div>
           </div>
 
-          <!-- Dashboard Sub-Navigation Tabs -->
-          <div class="bg-brand-bgLight px-6 py-3 border-b border-brand-border flex flex-wrap items-center justify-between gap-4">
-            <div class="flex space-x-2 text-xs font-semibold">
-              <button onclick="switchDashboardTab('leads')" id="tab-btn-leads" class="px-3.5 py-1.5 rounded-md bg-white text-brand-navy shadow-sm border border-brand-border">
-                ⚡ <span data-i18n="dash.tab1">AI Lead Scoring</span>
-              </button>
-              <button onclick="switchDashboardTab('churn')" id="tab-btn-churn" class="px-3.5 py-1.5 rounded-md text-slate-600 hover:text-brand-navy">
-                🛡️ <span data-i18n="dash.tab2">Dự đoán Churn & Retention</span>
-              </button>
-              <button onclick="switchDashboardTab('copilot')" id="tab-btn-copilot" class="px-3.5 py-1.5 rounded-md text-slate-600 hover:text-brand-navy">
-                🤖 <span data-i18n="dash.tab3">Omnichannel Copilot</span>
-              </button>
+          <!-- Deployment Context Strip -->
+          <div class="bg-brand-bgLight px-6 py-2.5 border-b border-brand-border flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div class="flex items-center gap-2 text-slate-700">
+              <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+              <span id="project-mockup-client" class="font-semibold text-brand-navy" data-i18n="proj.p1.client">Triển khai thực tế tại Tập đoàn Logistics Hoàng Gia (2,500 nhân sự)</span>
             </div>
-            <span class="text-xs text-brand-navyMuted font-mono" data-i18n="dash.synctime">Dữ liệu thời gian thực: Đồng bộ 12:45:00</span>
+            <span class="text-brand-navyMuted font-mono" data-i18n="proj.sync">Dữ liệu thời gian thực: Đồng bộ 12:45:00</span>
           </div>
 
-          <!-- TAB 1: AI LEAD SCORING VIEW -->
-          <div id="dash-view-leads" class="p-6">
-            <!-- Top KPI Cards -->
+          <!-- ============================================================== -->
+          <!-- KHUNG VIEW 01: DỰ ÁN LOGISTICS & SUPPLY CHAIN (HOÀNG GIA GROUP) -->
+          <!-- ============================================================== -->
+          <div id="project-view-0" class="p-6 tab-content-enter">
+            <!-- 4 KPI Cards -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               <div class="p-4 rounded-xl bg-brand-bgLight border border-brand-border">
-                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="dash.kpi1">Pipeline Giá Trị Cao</div>
+                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="proj.p1.kpi1">Pipeline Giá Trị Cao</div>
                 <div class="text-xl sm:text-2xl font-bold font-heading text-brand-navy mt-1">$4,850,000</div>
-                <div class="text-xs text-brand-accentGreen font-semibold mt-1 flex items-center gap-1" data-i18n="dash.kpi1.sub">
+                <div class="text-xs text-brand-accentGreen font-semibold mt-1 flex items-center gap-1" data-i18n="proj.p1.kpi1.sub">
                   ↑ +24.8% <span class="text-slate-400 font-normal">so với quý trước</span>
                 </div>
               </div>
               <div class="p-4 rounded-xl bg-brand-bgLight border border-brand-border">
-                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="dash.kpi2">Leads Được Chấm Điểm AI</div>
+                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="proj.p1.kpi2">Hợp Đồng B2B Quản Lý</div>
                 <div class="text-xl sm:text-2xl font-bold font-heading text-brand-navy mt-1">1,248</div>
-                <div class="text-xs text-brand-primary font-semibold mt-1" data-i18n="dash.kpi2.sub">100% tự động phân bổ</div>
+                <div class="text-xs text-brand-primary font-semibold mt-1" data-i18n="proj.p1.kpi2.sub">100% tự động chấm điểm AI</div>
               </div>
               <div class="p-4 rounded-xl bg-brand-bgLight border border-brand-border">
-                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="dash.kpi3">Tỷ Lệ Chuyển Đổi (Win Rate)</div>
+                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="proj.p1.kpi3">Tỷ Lệ Chuyển Đổi (Win Rate)</div>
                 <div class="text-xl sm:text-2xl font-bold font-heading text-brand-navy mt-1">38.4%</div>
-                <div class="text-xs text-brand-accentGreen font-semibold mt-1" data-i18n="dash.kpi3.sub">↑ +9.2% sau kích hoạt AI</div>
+                <div class="text-xs text-brand-accentGreen font-semibold mt-1" data-i18n="proj.p1.kpi3.sub">↑ +9.2% sau kích hoạt AI</div>
               </div>
               <div class="p-4 rounded-xl bg-brand-bgLight border border-brand-border">
-                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="dash.kpi4">Thời Gian Nhập Liệu Tiết Kiệm</div>
+                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="proj.p1.kpi4">Thời Gian Báo Giá Tiết Kiệm</div>
                 <div class="text-xl sm:text-2xl font-bold font-heading text-brand-navy mt-1">18.5h / sales</div>
-                <div class="text-xs text-slate-500 font-medium mt-1" data-i18n="dash.kpi4.sub">Mỗi tháng / nhân sự</div>
+                <div class="text-xs text-slate-500 font-medium mt-1" data-i18n="proj.p1.kpi4.sub">Mỗi tháng / nhân sự</div>
               </div>
             </div>
 
             <!-- Pipeline Table & AI Insights -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <!-- Left: Live Pipeline Leads with AI Score -->
+              <!-- Left: Live Pipeline Table -->
               <div class="lg:col-span-2 rounded-xl border border-brand-border overflow-hidden">
                 <div class="bg-brand-bgLight px-4 py-3 border-b border-brand-border flex justify-between items-center">
-                  <span class="text-xs font-bold uppercase tracking-wider text-brand-navy" data-i18n="dash.leadqueue">Phễu Khách Hàng Đang Xử Lý (AI-Ranked)</span>
+                  <span class="text-xs font-bold uppercase tracking-wider text-brand-navy" data-i18n="proj.p1.table.head">Phễu Hợp Đồng Vận Tải (AI-Ranked)</span>
                   <span class="text-[11px] px-2 py-0.5 rounded bg-brand-primaryLight text-brand-primary font-bold">Auto-Ranked</span>
                 </div>
                 <div class="divide-y divide-brand-border text-xs">
                   <!-- Row 1 -->
                   <div class="p-3.5 hover:bg-slate-50 flex items-center justify-between">
                     <div>
-                      <div class="font-bold text-brand-navy text-sm" data-i18n="dash.lead1.name">Tập đoàn Logistics Hoàng Gia</div>
-                      <div class="text-brand-navyMuted mt-0.5" data-i18n="dash.lead1.desc">Quy mô: 2,500 nhân sự · Nhu cầu: Tích hợp Core ERP</div>
+                      <div class="font-bold text-brand-navy text-sm" data-i18n="proj.p1.r1.name">Tập đoàn Logistics Hoàng Gia - Tuyến Hải Phòng - Hamburg</div>
+                      <div class="text-brand-navyMuted mt-0.5" data-i18n="proj.p1.r1.desc">Quy mô: 24 tỷ · Hàng hải quốc tế · Tích hợp Core ERP</div>
                     </div>
-                    <div class="text-right">
+                    <div class="text-right shrink-0 ml-3">
                       <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">
                         <span class="w-2 h-2 rounded-full bg-brand-accentGreen"></span>
                         <span>AI Score: 94/100</span>
                       </div>
-                      <div class="text-[11px] text-brand-primary font-medium mt-1" data-i18n="dash.lead1.rec">Khuyến nghị: Gửi proposal trong 2h</div>
+                      <div class="text-[11px] text-brand-primary font-medium mt-1" data-i18n="proj.p1.r1.rec">Khuyến nghị: Gửi proposal trong 2h</div>
                     </div>
                   </div>
                   <!-- Row 2 -->
                   <div class="p-3.5 hover:bg-slate-50 flex items-center justify-between">
                     <div>
-                      <div class="font-bold text-brand-navy text-sm" data-i18n="dash.lead2.name">Ngân Hàng Cổ Phần Quốc Tế V-Bank</div>
-                      <div class="text-brand-navyMuted mt-0.5" data-i18n="dash.lead2.desc">Quy mô: 8,000 nhân sự · Nhu cầu: On-premise AI Model</div>
+                      <div class="font-bold text-brand-navy text-sm" data-i18n="proj.p1.r2.name">V-Logistics Global - Tuyến Cát Lái - Los Angeles (LAX)</div>
+                      <div class="text-brand-navyMuted mt-0.5" data-i18n="proj.p1.r2.desc">Quy mô: 18 tỷ · Vận chuyển hàng không xuyên biên giới</div>
                     </div>
-                    <div class="text-right">
+                    <div class="text-right shrink-0 ml-3">
                       <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">
                         <span class="w-2 h-2 rounded-full bg-brand-accentGreen"></span>
                         <span>AI Score: 91/100</span>
                       </div>
-                      <div class="text-[11px] text-brand-primary font-medium mt-1" data-i18n="dash.lead2.rec">Khuyến nghị: Sắp xếp họp CIO</div>
+                      <div class="text-[11px] text-brand-primary font-medium mt-1" data-i18n="proj.p1.r2.rec">Khuyến nghị: Sắp xếp họp CIO đối tác</div>
                     </div>
                   </div>
                   <!-- Row 3 -->
                   <div class="p-3.5 hover:bg-slate-50 flex items-center justify-between">
                     <div>
-                      <div class="font-bold text-brand-navy text-sm" data-i18n="dash.lead3.name">Chuỗi Bán Lẻ Tân Phát Retail</div>
-                      <div class="text-brand-navyMuted mt-0.5" data-i18n="dash.lead3.desc">Quy mô: 650 nhân sự · Nhu cầu: Omnichannel CRM</div>
+                      <div class="font-bold text-brand-navy text-sm" data-i18n="proj.p1.r3.name">Tân Cảng Overland - Tuyến Nội Bài - Incheon</div>
+                      <div class="text-brand-navyMuted mt-0.5" data-i18n="proj.p1.r3.desc">Quy mô: 11 tỷ · Kho bãi & liên vận đa phương thức</div>
                     </div>
-                    <div class="text-right">
+                    <div class="text-right shrink-0 ml-3">
                       <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 font-bold border border-blue-200">
                         <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
                         <span>AI Score: 86/100</span>
                       </div>
-                      <div class="text-[11px] text-slate-500 font-medium mt-1" data-i18n="dash.lead3.rec">Đã kích hoạt phễu tự động</div>
+                      <div class="text-[11px] text-slate-500 font-medium mt-1" data-i18n="proj.p1.r3.rec">Đã kích hoạt phễu tự động</div>
                     </div>
                   </div>
                 </div>
@@ -405,73 +449,259 @@
                   <div class="flex items-center justify-between pb-3 border-b border-brand-border">
                     <span class="text-xs font-bold text-brand-navy flex items-center gap-2">
                       <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
-                      AI Next-Best-Action
+                      AI Next-Best-Action (Logistics)
                     </span>
-                    <span class="text-[10px] text-slate-400 font-mono" data-i18n="dash.nba.badge">vừa xong</span>
+                    <span class="text-[10px] text-slate-400 font-mono" data-i18n="proj.nba.badge">vừa xong</span>
                   </div>
                   <div class="mt-3 bg-white p-3 rounded-lg border border-brand-border text-xs text-brand-navy leading-relaxed">
-                    <p class="font-semibold text-brand-navy mb-1" data-i18n="dash.nba.boxtitle">💡 Tóm tắt tín hiệu mua hàng:</p>
-                    <p class="text-slate-600" data-i18n="dash.nba.boxdesc">Khách hàng Hoàng Gia vừa xem tài liệu bảo mật API 4 lần trong 24h. Mô hình AI dự đoán xác suất chốt đạt 94% nếu gửi bảng so sánh On-Premise vs Cloud ngay hôm nay.</p>
+                    <p class="font-semibold text-brand-navy mb-1" data-i18n="proj.p1.nba.title">💡 Tóm tắt tín hiệu mua hàng:</p>
+                    <p class="text-slate-600" data-i18n="proj.p1.nba.desc">Khách hàng Hoàng Gia vừa tra cứu biểu phí API 4 lần trong 24h. Mô hình AI dự đoán xác suất chốt đạt 94% nếu gửi bảng so sánh On-Premise vs Cloud ngay hôm nay.</p>
                   </div>
                   <div class="mt-3 space-y-1.5">
-                    <div class="text-[11px] text-brand-navy font-semibold" data-i18n="dash.nba.autotitle">Tự động hóa đã chạy:</div>
-                    <div class="flex items-center text-[11px] text-emerald-700 gap-1.5" data-i18n="dash.nba.auto1">
-                      ✓ Đã đồng bộ lịch sử vào hệ thống ERP
+                    <div class="text-[11px] text-brand-navy font-semibold" data-i18n="proj.auto.title">Tự động hóa đã chạy:</div>
+                    <div class="flex items-center text-[11px] text-emerald-700 gap-1.5" data-i18n="proj.p1.auto1">
+                      ✓ Đã đồng bộ lịch sử vào hệ thống Oracle ERP
                     </div>
-                    <div class="flex items-center text-[11px] text-emerald-700 gap-1.5" data-i18n="dash.nba.auto2">
-                      ✓ Đã thông báo Giám đốc phụ trách qua Slack
+                    <div class="flex items-center text-[11px] text-emerald-700 gap-1.5" data-i18n="proj.p1.auto2">
+                      ✓ Đã thông báo Giám đốc vận hành qua Slack
                     </div>
                   </div>
                 </div>
                 <div class="mt-4 pt-3 border-t border-brand-border">
-                  <a href="#demo-form" class="block text-center w-full py-2 rounded-lg bg-brand-navy text-white text-xs font-bold hover:bg-brand-navyLight transition-colors" data-i18n="dash.nba.btn">
-                    Xem demo với dữ liệu mẫu của bạn →
+                  <a href="#demo-form" class="block text-center w-full py-2 rounded-lg bg-brand-navy text-white text-xs font-bold hover:bg-brand-navyLight transition-colors" data-i18n="proj.p1.nba.btn">
+                    Xem demo bài toán Logistics của bạn →
                   </a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- TAB 2: CHURN PREDICTION (Hidden by default, switched via JS) -->
-          <div id="dash-view-churn" class="p-6 hidden">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div class="p-4 rounded-xl bg-amber-50 border border-amber-200">
-                <div class="text-xs text-amber-800 font-bold uppercase" data-i18n="dash.churn.c1.title">Cảnh Báo Nguy Cơ Rời Bỏ (Churn Alert)</div>
-                <div class="text-2xl font-bold font-heading text-amber-900 mt-1" data-i18n="dash.churn.c1.val">3 Doanh nghiệp</div>
-                <div class="text-xs text-amber-700 mt-1" data-i18n="dash.churn.c1.sub">Phát hiện qua sụt giảm 40% tần suất truy cập API</div>
+          <!-- ============================================================== -->
+          <!-- KHUNG VIEW 02: DỰ ÁN NGÂN HÀNG & CHURN RADAR (V-BANK) -->
+          <!-- ============================================================== -->
+          <div id="project-view-1" class="p-6 hidden">
+            <!-- 4 KPI Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              <div class="p-4 rounded-xl bg-amber-50/70 border border-amber-200">
+                <div class="text-xs text-amber-800 font-bold uppercase" data-i18n="proj.p2.kpi1">Doanh Thu Bảo Toàn (Saved ARR)</div>
+                <div class="text-xl sm:text-2xl font-bold font-heading text-amber-950 mt-1">$1,280,000</div>
+                <div class="text-xs text-amber-700 font-semibold mt-1" data-i18n="proj.p2.kpi1.sub">↑ +31.5% giữ chân thành công</div>
               </div>
               <div class="p-4 rounded-xl bg-brand-bgLight border border-brand-border">
-                <div class="text-xs text-brand-navyMuted font-bold uppercase" data-i18n="dash.churn.c2.title">Doanh Thu Được Giữ Chân (Saved ARR)</div>
-                <div class="text-2xl font-bold font-heading text-brand-navy mt-1">$320,000</div>
-                <div class="text-xs text-brand-accentGreen font-semibold mt-1" data-i18n="dash.churn.c2.sub">Nhờ can thiệp sớm trong 7 ngày đầu</div>
+                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="proj.p2.kpi2">Tài Khoản VIP Cảnh Báo Sớm</div>
+                <div class="text-xl sm:text-2xl font-bold font-heading text-brand-navy mt-1">12 Doanh nghiệp</div>
+                <div class="text-xs text-brand-primary font-semibold mt-1" data-i18n="proj.p2.kpi2.sub">Giám sát lưu lượng API 24/7</div>
               </div>
               <div class="p-4 rounded-xl bg-brand-bgLight border border-brand-border">
-                <div class="text-xs text-brand-navyMuted font-bold uppercase" data-i18n="dash.churn.c3.title">Độ Chính Xác Dự Báo AI</div>
-                <div class="text-2xl font-bold font-heading text-brand-navy mt-1">92.6%</div>
-                <div class="text-xs text-brand-primary font-semibold mt-1" data-i18n="dash.churn.c3.sub">Huấn luyện trên 500k+ điểm dữ liệu</div>
+                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="proj.p2.kpi3">Độ Chính Xác Dự Báo Churn</div>
+                <div class="text-xl sm:text-2xl font-bold font-heading text-brand-navy mt-1">96.2%</div>
+                <div class="text-xs text-brand-accentGreen font-semibold mt-1" data-i18n="proj.p2.kpi3.sub">Huấn luyện trên 850k điểm dữ liệu</div>
+              </div>
+              <div class="p-4 rounded-xl bg-brand-bgLight border border-brand-border">
+                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="proj.p2.kpi4">Thời Gian Can Thiệp Sớm</div>
+                <div class="text-xl sm:text-2xl font-bold font-heading text-brand-navy mt-1">&lt; 24 giờ</div>
+                <div class="text-xs text-slate-500 font-medium mt-1" data-i18n="proj.p2.kpi4.sub">Nhanh hơn 3.5x so với quy trình cũ</div>
               </div>
             </div>
-            <div class="bg-white rounded-xl border border-brand-border p-4 text-xs">
-              <div class="font-bold text-brand-navy mb-2" data-i18n="dash.churn.action.title">Hành động giữ chân tự động được kích hoạt:</div>
-              <p class="text-slate-600 mb-3" data-i18n="dash.churn.action.desc">Hệ thống Easy AI đã tự động cảnh báo Trưởng bộ phận CSKH, chuẩn bị báo cáo phân tích rủi ro và gợi ý lịch hẹn tái cấu trúc hợp đồng cho khách hàng có chỉ số rủi ro cao.</p>
-              <a href="#demo-form" class="inline-block text-brand-primary font-semibold hover:underline" data-i18n="dash.churn.action.btn">Tìm hiểu cơ chế giữ chân khách hàng bằng AI →</a>
+
+            <!-- Risk Table & Churn Plan -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <!-- Left: Live Churn Radar Table -->
+              <div class="lg:col-span-2 rounded-xl border border-brand-border overflow-hidden">
+                <div class="bg-brand-bgLight px-4 py-3 border-b border-brand-border flex justify-between items-center">
+                  <span class="text-xs font-bold uppercase tracking-wider text-brand-navy" data-i18n="proj.p2.table.head">Radar Tài Khoản Doanh Nghiệp Có Nguy Cơ (AI Churn Radar)</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-red-100 text-red-700 font-bold">Risk Alert</span>
+                </div>
+                <div class="divide-y divide-brand-border text-xs">
+                  <!-- Row 1 -->
+                  <div class="p-3.5 hover:bg-slate-50 flex items-center justify-between">
+                    <div>
+                      <div class="font-bold text-brand-navy text-sm" data-i18n="proj.p2.r1.name">Tập đoàn Tài chính Á Châu (Asia Capital)</div>
+                      <div class="text-brand-navyMuted mt-0.5" data-i18n="proj.p2.r1.desc">Quy mô: $45M CASA · API sụt giảm 42% trong 14 ngày</div>
+                    </div>
+                    <div class="text-right shrink-0 ml-3">
+                      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-50 text-red-700 font-bold border border-red-200">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                        <span data-i18n="proj.p2.r1.risk">Nguy cơ Churn: 88% (Rất cao)</span>
+                      </div>
+                      <div class="text-[11px] text-amber-800 font-medium mt-1" data-i18n="proj.p2.r1.rec">Khuyến nghị: Họp CFO & Áp dụng gói phí ưu đãi</div>
+                    </div>
+                  </div>
+                  <!-- Row 2 -->
+                  <div class="p-3.5 hover:bg-slate-50 flex items-center justify-between">
+                    <div>
+                      <div class="font-bold text-brand-navy text-sm" data-i18n="proj.p2.r2.name">Công ty CP Đầu Tư Bất Động Sản Đô Thành</div>
+                      <div class="text-brand-navyMuted mt-0.5" data-i18n="proj.p2.r2.desc">Quy mô: $28M tín dụng · Tần suất giao dịch giảm 35%</div>
+                    </div>
+                    <div class="text-right shrink-0 ml-3">
+                      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 font-bold border border-amber-200">
+                        <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                        <span data-i18n="proj.p2.r2.risk">Nguy cơ Churn: 74% (Cao)</span>
+                      </div>
+                      <div class="text-[11px] text-brand-primary font-medium mt-1" data-i18n="proj.p2.r2.rec">Khuyến nghị: Tái cấu trúc hạn mức tín dụng Q3</div>
+                    </div>
+                  </div>
+                  <!-- Row 3 -->
+                  <div class="p-3.5 hover:bg-slate-50 flex items-center justify-between">
+                    <div>
+                      <div class="font-bold text-brand-navy text-sm" data-i18n="proj.p2.r3.name">Tổng Công ty Xuất Nhập Khẩu Sông Hồng</div>
+                      <div class="text-brand-navyMuted mt-0.5" data-i18n="proj.p2.r3.desc">Quy mô: $19M ngoại hối · Đóng băng 2 tài khoản phụ</div>
+                    </div>
+                    <div class="text-right shrink-0 ml-3">
+                      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 font-bold border border-slate-200">
+                        <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                        <span data-i18n="proj.p2.r3.risk">Nguy cơ Churn: 63% (Trung bình)</span>
+                      </div>
+                      <div class="text-[11px] text-slate-600 font-medium mt-1" data-i18n="proj.p2.r3.rec">Đã thông báo Giám đốc Quản lý Tài khoản (RM)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: AI Churn Action Card -->
+              <div class="rounded-xl border border-brand-border bg-brand-bgLight p-4 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between pb-3 border-b border-brand-border">
+                    <span class="text-xs font-bold text-brand-navy flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                      AI Churn Prevention Engine
+                    </span>
+                    <span class="text-[10px] text-slate-400 font-mono" data-i18n="proj.nba.badge">vừa xong</span>
+                  </div>
+                  <div class="mt-3 bg-white p-3 rounded-lg border border-brand-border text-xs text-brand-navy leading-relaxed">
+                    <p class="font-semibold text-brand-navy mb-1" data-i18n="proj.p2.nba.title">🛡️ Cảnh báo rủi ro rời bỏ:</p>
+                    <p class="text-slate-600" data-i18n="proj.p2.nba.desc">Hệ thống phát hiện khách hàng Á Châu giảm đột ngột lưu lượng thanh toán quốc tế qua cổng API. Mô hình AI tự động sinh đề xuất gói ưu đãi miễn phí giao dịch quốc tế và lịch hẹn gặp Giám đốc RM.</p>
+                  </div>
+                  <div class="mt-3 space-y-1.5">
+                    <div class="text-[11px] text-brand-navy font-semibold" data-i18n="proj.auto.title">Tự động hóa đã chạy:</div>
+                    <div class="flex items-center text-[11px] text-emerald-700 gap-1.5" data-i18n="proj.p2.auto1">
+                      ✓ Đã bảo mật On-Premise dữ liệu nhạy cảm ISO 27001
+                    </div>
+                    <div class="flex items-center text-[11px] text-emerald-700 gap-1.5" data-i18n="proj.p2.auto2">
+                      ✓ Đã gửi thông báo mã hóa tới Giám đốc Quản lý RM
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-brand-border">
+                  <a href="#demo-form" class="block text-center w-full py-2 rounded-lg bg-brand-navy text-white text-xs font-bold hover:bg-brand-navyLight transition-colors" data-i18n="proj.p2.nba.btn">
+                    Xem demo Churn Radar cho Ngân hàng →
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- TAB 3: OMNICHANNEL COPILOT (Hidden by default, switched via JS) -->
-          <div id="dash-view-copilot" class="p-6 hidden">
-            <div class="bg-brand-bgLight rounded-xl border border-brand-border p-5">
-              <div class="flex items-center gap-3 mb-4">
-                <img src="assets/logo/easyai-logo-square.png" alt="Easy AI Copilot" class="w-8 h-8 rounded-full shadow-sm object-cover">
-                <div>
-                  <div class="text-sm font-bold text-brand-navy" data-i18n="dash.copilot.title">Copilot Tóm Tắt 360° Khách Hàng</div>
-                  <div class="text-xs text-slate-500" data-i18n="dash.copilot.sub">Tự động trích xuất từ 48 email & 12 cuộc gọi gần nhất</div>
+          <!-- ============================================================== -->
+          <!-- KHUNG VIEW 03: DỰ ÁN BÁN LẺ & OMNICHANNEL COPILOT (TÂN PHÁT RETAIL) -->
+          <!-- ============================================================== -->
+          <div id="project-view-2" class="p-6 hidden">
+            <!-- 4 KPI Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              <div class="p-4 rounded-xl bg-brand-bgLight border border-brand-border">
+                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="proj.p3.kpi1">Doanh Thu Copilot Hỗ Trợ</div>
+                <div class="text-xl sm:text-2xl font-bold font-heading text-brand-navy mt-1">$2,640,000</div>
+                <div class="text-xs text-brand-accentGreen font-semibold mt-1" data-i18n="proj.p3.kpi1.sub">↑ +42.0% từ kịch bản Upsell AI</div>
+              </div>
+              <div class="p-4 rounded-xl bg-brand-bgLight border border-brand-border">
+                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="proj.p3.kpi2">Phiên Tư Vấn Đa Kênh</div>
+                <div class="text-xl sm:text-2xl font-bold font-heading text-brand-navy mt-1">14,200 / tuần</div>
+                <div class="text-xs text-brand-primary font-semibold mt-1" data-i18n="proj.p3.kpi2.sub">Đồng bộ 85 chi nhánh & Zalo OA</div>
+              </div>
+              <div class="p-4 rounded-xl bg-brand-bgLight border border-brand-border">
+                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="proj.p3.kpi3">Tỷ Lệ Chuyển Đổi Giỏ Hàng</div>
+                <div class="text-xl sm:text-2xl font-bold font-heading text-brand-navy mt-1">28.6%</div>
+                <div class="text-xs text-brand-accentGreen font-semibold mt-1" data-i18n="proj.p3.kpi3.sub">↑ +8.4% sau tích hợp AI Copilot</div>
+              </div>
+              <div class="p-4 rounded-xl bg-brand-bgLight border border-brand-border">
+                <div class="text-xs text-brand-navyMuted font-medium" data-i18n="proj.p3.kpi4">Tốc Độ Phản Hồi Trung Bình</div>
+                <div class="text-xl sm:text-2xl font-bold font-heading text-brand-navy mt-1">&lt; 3 giây</div>
+                <div class="text-xs text-slate-500 font-medium mt-1" data-i18n="proj.p3.kpi4.sub">Trích xuất chân dung tức thì</div>
+              </div>
+            </div>
+
+            <!-- Feed Table & Copilot Suggestion -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <!-- Left: Omnichannel Customer Interactions -->
+              <div class="lg:col-span-2 rounded-xl border border-brand-border overflow-hidden">
+                <div class="bg-brand-bgLight px-4 py-3 border-b border-brand-border flex justify-between items-center">
+                  <span class="text-xs font-bold uppercase tracking-wider text-brand-navy" data-i18n="proj.p3.table.head">Luồng Tương Tác Khách Hàng Đa Kênh (Omnichannel Live Stream)</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-brand-accentGreen/20 text-emerald-800 font-bold">Realtime POS</span>
+                </div>
+                <div class="divide-y divide-brand-border text-xs">
+                  <!-- Row 1 -->
+                  <div class="p-3.5 hover:bg-slate-50 flex items-center justify-between">
+                    <div>
+                      <div class="font-bold text-brand-navy text-sm" data-i18n="proj.p3.r1.name">Chị Nguyễn Mai Anh (Hạng Kim Cương · 85 triệu tích lũy)</div>
+                      <div class="text-brand-navyMuted mt-0.5" data-i18n="proj.p3.r1.desc">Kênh: Zalo OA & POS Cầu Giấy · Đang xem BST thu đông mới</div>
+                    </div>
+                    <div class="text-right shrink-0 ml-3">
+                      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">
+                        <span class="w-2 h-2 rounded-full bg-brand-accentGreen"></span>
+                        <span data-i18n="proj.p3.r1.badge">Xác suất mua: 92%</span>
+                      </div>
+                      <div class="text-[11px] text-brand-primary font-medium mt-1" data-i18n="proj.p3.r1.rec">Gợi ý AI: Tặng voucher VIP 10% có hạn trong 24h</div>
+                    </div>
+                  </div>
+                  <!-- Row 2 -->
+                  <div class="p-3.5 hover:bg-slate-50 flex items-center justify-between">
+                    <div>
+                      <div class="font-bold text-brand-navy text-sm" data-i18n="proj.p3.r2.name">Công ty Thiết Kế Nội Thất K-Decor (Mua sỉ)</div>
+                      <div class="text-brand-navyMuted mt-0.5" data-i18n="proj.p3.r2.desc">Kênh: Website & Hotline · Yêu cầu chiết khấu 50 bộ sản phẩm</div>
+                    </div>
+                    <div class="text-right shrink-0 ml-3">
+                      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">
+                        <span class="w-2 h-2 rounded-full bg-brand-accentGreen"></span>
+                        <span data-i18n="proj.p3.r2.badge">Xác suất mua: 88%</span>
+                      </div>
+                      <div class="text-[11px] text-brand-primary font-medium mt-1" data-i18n="proj.p3.r2.rec">Gợi ý AI: Kích hoạt chính sách giá bán buôn B2B Tier 2</div>
+                    </div>
+                  </div>
+                  <!-- Row 3 -->
+                  <div class="p-3.5 hover:bg-slate-50 flex items-center justify-between">
+                    <div>
+                      <div class="font-bold text-brand-navy text-sm" data-i18n="proj.p3.r3.name">Anh Trần Quốc Huy (Hạng Vàng · 32 triệu tích lũy)</div>
+                      <div class="text-brand-navyMuted mt-0.5" data-i18n="proj.p3.r3.desc">Kênh: POS Quận 1 · Đang có giỏ hàng chờ tại quầy</div>
+                    </div>
+                    <div class="text-right shrink-0 ml-3">
+                      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 font-bold border border-blue-200">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        <span data-i18n="proj.p3.r3.badge">Xác suất mua: 84%</span>
+                      </div>
+                      <div class="text-[11px] text-slate-500 font-medium mt-1" data-i18n="proj.p3.r3.rec">Gợi ý AI: Giới thiệu phụ kiện đồng bộ kèm ưu đãi</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="bg-white p-4 rounded-lg border border-brand-border text-xs space-y-2 text-slate-700">
-                <p data-i18n="dash.copilot.b1">• <strong>Mối quan tâm chính:</strong> Yêu cầu kết nối trực tiếp cơ sở dữ liệu nội bộ (On-premise Oracle), không lưu dữ liệu trên server công cộng.</p>
-                <p data-i18n="dash.copilot.b2">• <strong>Người có tiếng nói quyết định:</strong> Giám đốc Chuyển đổi số (Đã đồng ý ngân sách) & Trưởng phòng An ninh thông tin (Cần xem xét chứng nhận D-U-N-S và ISO 27001).</p>
-                <p data-i18n="dash.copilot.b3">• <strong>Dự thảo phản hồi AI đề xuất:</strong> Bản nháp kỹ thuật đáp ứng kiến trúc Hybrid-Cloud sẵn sàng gửi trong 1 cú click.</p>
+
+              <!-- Right: AI Copilot Action Card -->
+              <div class="rounded-xl border border-brand-border bg-brand-bgLight p-4 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between pb-3 border-b border-brand-border">
+                    <span class="text-xs font-bold text-brand-navy flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                      Omnichannel Sales Copilot
+                    </span>
+                    <span class="text-[10px] text-slate-400 font-mono" data-i18n="proj.nba.badge">vừa xong</span>
+                  </div>
+                  <div class="mt-3 bg-white p-3 rounded-lg border border-brand-border text-xs text-brand-navy leading-relaxed">
+                    <p class="font-semibold text-brand-navy mb-1" data-i18n="proj.p3.nba.title">💡 Chân dung khách hàng 360°:</p>
+                    <p class="text-slate-600" data-i18n="proj.p3.nba.desc">Khách hàng Mai Anh vừa ghé cửa hàng Cầu Giấy thử đồ và đang xem lại sản phẩm trên Zalo OA. Copilot đã tổng hợp sở thích kích cỡ, màu sắc và tự động soạn thảo bản nháp tư vấn sẵn sàng gửi qua Zalo trong 1 chạm.</p>
+                  </div>
+                  <div class="mt-3 space-y-1.5">
+                    <div class="text-[11px] text-brand-navy font-semibold" data-i18n="proj.auto.title">Tự động hóa đã chạy:</div>
+                    <div class="flex items-center text-[11px] text-emerald-700 gap-1.5" data-i18n="proj.p3.auto1">
+                      ✓ Đã kiểm tra tồn kho tại chi nhánh Cầu Giấy
+                    </div>
+                    <div class="flex items-center text-[11px] text-emerald-700 gap-1.5" data-i18n="proj.p3.auto2">
+                      ✓ Đã đồng bộ lịch sử vào hệ thống POS toàn chuỗi
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-brand-border">
+                  <a href="#demo-form" class="block text-center w-full py-2 rounded-lg bg-brand-navy text-white text-xs font-bold hover:bg-brand-navyLight transition-colors" data-i18n="proj.p3.nba.btn">
+                    Xem demo Copilot bán hàng đa kênh →
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -1283,50 +1513,97 @@
         "hero.subtitle": "Giải phóng đội ngũ kinh doanh khỏi 65% thao tác thủ công, tự động chấm điểm cơ hội và dự báo chính xác hành vi khách hàng bằng trí tuệ nhân tạo tích hợp sâu vào quy trình nghiệp vụ.",
         "hero.cta": "Đặt lịch demo cùng Chuyên gia",
         "hero.trustnote": "Demo 1:1 theo bài toán riêng · Cam kết bảo mật NDA",
-        "dash.tab1": "AI Lead Scoring",
-        "dash.tab2": "Dự đoán Churn & Retention",
-        "dash.tab3": "Omnichannel Copilot",
-        "dash.synctime": "Dữ liệu thời gian thực: Đồng bộ 12:45:00",
-        "dash.kpi1": "Pipeline Giá Trị Cao",
-        "dash.kpi1.sub": "↑ +24.8% <span class='text-slate-400 font-normal'>so với quý trước</span>",
-        "dash.kpi2": "Leads Được Chấm Điểm AI",
-        "dash.kpi2.sub": "100% tự động phân bổ",
-        "dash.kpi3": "Tỷ Lệ Chuyển Đổi (Win Rate)",
-        "dash.kpi3.sub": "↑ +9.2% sau kích hoạt AI",
-        "dash.kpi4": "Thời Gian Nhập Liệu Tiết Kiệm",
-        "dash.kpi4.sub": "Mỗi tháng / nhân sự",
-        "dash.leadqueue": "Phễu Khách Hàng Đang Xử Lý (AI-Ranked)",
-        "dash.lead1.name": "Tập đoàn Logistics Hoàng Gia",
-        "dash.lead1.desc": "Quy mô: 2,500 nhân sự · Nhu cầu: Tích hợp Core ERP",
-        "dash.lead1.rec": "Khuyến nghị: Gửi proposal trong 2h",
-        "dash.lead2.name": "Ngân Hàng Cổ Phần Quốc Tế V-Bank",
-        "dash.lead2.desc": "Quy mô: 8,000 nhân sự · Nhu cầu: On-premise AI Model",
-        "dash.lead2.rec": "Khuyến nghị: Sắp xếp họp CIO",
-        "dash.lead3.name": "Chuỗi Bán Lẻ Tân Phát Retail",
-        "dash.lead3.desc": "Quy mô: 650 nhân sự · Nhu cầu: Omnichannel CRM",
-        "dash.lead3.rec": "Đã kích hoạt phễu tự động",
-        "dash.nba.badge": "vừa xong",
-        "dash.nba.boxtitle": "💡 Tóm tắt tín hiệu mua hàng:",
-        "dash.nba.boxdesc": "Khách hàng Hoàng Gia vừa xem tài liệu bảo mật API 4 lần trong 24h. Mô hình AI dự đoán xác suất chốt đạt 94% nếu gửi bảng so sánh On-Premise vs Cloud ngay hôm nay.",
-        "dash.nba.autotitle": "Tự động hóa đã chạy:",
-        "dash.nba.auto1": "✓ Đã đồng bộ lịch sử vào hệ thống ERP",
-        "dash.nba.auto2": "✓ Đã thông báo Giám đốc phụ trách qua Slack",
-        "dash.nba.btn": "Xem demo với dữ liệu mẫu của bạn →",
-        "dash.churn.c1.title": "Cảnh Báo Nguy Cơ Rời Bỏ (Churn Alert)",
-        "dash.churn.c1.val": "3 Doanh nghiệp",
-        "dash.churn.c1.sub": "Phát hiện qua sụt giảm 40% tần suất truy cập API",
-        "dash.churn.c2.title": "Doanh Thu Được Giữ Chân (Saved ARR)",
-        "dash.churn.c2.sub": "Nhờ can thiệp sớm trong 7 ngày đầu",
-        "dash.churn.c3.title": "Độ Chính Xác Dự Báo AI",
-        "dash.churn.c3.sub": "Huấn luyện trên 500k+ điểm dữ liệu",
-        "dash.churn.action.title": "Hành động giữ chân tự động được kích hoạt:",
-        "dash.churn.action.desc": "Hệ thống Easy AI đã tự động cảnh báo Trưởng bộ phận CSKH, chuẩn bị báo cáo phân tích rủi ro và gợi ý lịch hẹn tái cấu trúc hợp đồng cho khách hàng có chỉ số rủi ro cao.",
-        "dash.churn.action.btn": "Tìm hiểu cơ chế giữ chân khách hàng bằng AI →",
-        "dash.copilot.title": "Copilot Tóm Tắt 360° Khách Hàng",
-        "dash.copilot.sub": "Tự động trích xuất từ 48 email & 12 cuộc gọi gần nhất",
-        "dash.copilot.b1": "• <strong>Mối quan tâm chính:</strong> Yêu cầu kết nối trực tiếp cơ sở dữ liệu nội bộ (On-premise Oracle), không lưu dữ liệu trên server công cộng.",
+        "proj.p1.badge": "DỰ ÁN 01 · LOGISTICS B2B",
+        "proj.p1.title": "Hoàng Gia Supply Chain CRM",
+        "proj.p2.badge": "DỰ ÁN 02 · FINTECH & BANKING",
+        "proj.p2.title": "V-Bank Churn Risk Radar",
+        "proj.p3.badge": "DỰ ÁN 03 · BÁN LẺ ĐA KÊNH",
+        "proj.p3.title": "Tân Phát 360° Sales Copilot",
+        "proj.p1.client": "Triển khai thực tế tại Tập đoàn Logistics Hoàng Gia (2,500 nhân sự)",
+        "proj.p2.client": "Triển khai thực tế tại Ngân Hàng Cổ Phần Quốc Tế V-Bank (8,000 nhân sự)",
+        "proj.p3.client": "Triển khai thực tế tại Chuỗi Bán Lẻ Tân Phát Retail (85 chi nhánh)",
+        "proj.p1.status": "AI Engine: v4.2 Active · Oracle ERP",
+        "proj.p2.status": "On-Premise Isolated · ISO 27001",
+        "proj.p3.status": "Realtime POS & Zalo Sync · 85 Chi Nhánh",
+        "proj.sync": "Dữ liệu thời gian thực: Đồng bộ 12:45:00",
+        "proj.nba.badge": "vừa xong",
+        "proj.auto.title": "Tự động hóa đã chạy:",
+        "proj.p1.kpi1": "Pipeline Giá Trị Cao",
+        "proj.p1.kpi1.sub": "↑ +24.8% <span class='text-slate-400 font-normal'>so với quý trước</span>",
+        "proj.p1.kpi2": "Hợp Đồng B2B Quản Lý",
+        "proj.p1.kpi2.sub": "100% tự động chấm điểm AI",
+        "proj.p1.kpi3": "Tỷ Lệ Chuyển Đổi (Win Rate)",
+        "proj.p1.kpi3.sub": "↑ +9.2% sau kích hoạt AI",
+        "proj.p1.kpi4": "Thời Gian Báo Giá Tiết Kiệm",
+        "proj.p1.kpi4.sub": "Mỗi tháng / nhân sự",
+        "proj.p1.table.head": "Phễu Hợp Đồng Vận Tải (AI-Ranked)",
+        "proj.p1.r1.name": "Tập đoàn Logistics Hoàng Gia - Tuyến Hải Phòng - Hamburg",
+        "proj.p1.r1.desc": "Quy mô: 24 tỷ · Hàng hải quốc tế · Tích hợp Core ERP",
+        "proj.p1.r1.rec": "Khuyến nghị: Gửi proposal trong 2h",
+        "proj.p1.r2.name": "V-Logistics Global - Tuyến Cát Lái - Los Angeles (LAX)",
+        "proj.p1.r2.desc": "Quy mô: 18 tỷ · Vận chuyển hàng không xuyên biên giới",
+        "proj.p1.r2.rec": "Khuyến nghị: Sắp xếp họp CIO đối tác",
+        "proj.p1.r3.name": "Tân Cảng Overland - Tuyến Nội Bài - Incheon",
+        "proj.p1.r3.desc": "Quy mô: 11 tỷ · Kho bãi & liên vận đa phương thức",
+        "proj.p1.r3.rec": "Đã kích hoạt phễu tự động",
+        "proj.p1.nba.title": "💡 Tóm tắt tín hiệu mua hàng:",
+        "proj.p1.nba.desc": "Khách hàng Hoàng Gia vừa tra cứu biểu phí API 4 lần trong 24h. Mô hình AI dự đoán xác suất chốt đạt 94% nếu gửi bảng so sánh On-Premise vs Cloud ngay hôm nay.",
+        "proj.p1.auto1": "✓ Đã đồng bộ lịch sử vào hệ thống Oracle ERP",
+        "proj.p1.auto2": "✓ Đã thông báo Giám đốc vận hành qua Slack",
+        "proj.p1.nba.btn": "Xem demo bài toán Logistics của bạn →",
+        "proj.p2.kpi1": "Doanh Thu Bảo Toàn (Saved ARR)",
+        "proj.p2.kpi1.sub": "↑ +31.5% giữ chân thành công",
+        "proj.p2.kpi2": "Tài Khoản VIP Cảnh Báo Sớm",
+        "proj.p2.kpi2.sub": "Giám sát lưu lượng API 24/7",
+        "proj.p2.kpi3": "Độ Chính Xác Dự Báo Churn",
+        "proj.p2.kpi3.sub": "Huấn luyện trên 850k điểm dữ liệu",
+        "proj.p2.kpi4": "Thời Gian Can Thiệp Sớm",
+        "proj.p2.kpi4.sub": "Nhanh hơn 3.5x so với quy trình cũ",
+        "proj.p2.table.head": "Radar Tài Khoản Doanh Nghiệp Có Nguy Cơ (AI Churn Radar)",
+        "proj.p2.r1.name": "Tập đoàn Tài chính Á Châu (Asia Capital)",
+        "proj.p2.r1.desc": "Quy mô: $45M CASA · API sụt giảm 42% trong 14 ngày",
+        "proj.p2.r1.risk": "Nguy cơ Churn: 88% (Rất cao)",
+        "proj.p2.r1.rec": "Khuyến nghị: Họp CFO & Áp dụng gói phí ưu đãi",
+        "proj.p2.r2.name": "Công ty CP Đầu Tư Bất Động Sản Đô Thành",
+        "proj.p2.r2.desc": "Quy mô: $28M tín dụng · Tần suất giao dịch giảm 35%",
+        "proj.p2.r2.risk": "Nguy cơ Churn: 74% (Cao)",
+        "proj.p2.r2.rec": "Khuyến nghị: Tái cấu trúc hạn mức tín dụng Q3",
+        "proj.p2.r3.name": "Tổng Công ty Xuất Nhập Khẩu Sông Hồng",
+        "proj.p2.r3.desc": "Quy mô: $19M ngoại hối · Đóng băng 2 tài khoản phụ",
+        "proj.p2.r3.risk": "Nguy cơ Churn: 63% (Trung bình)",
+        "proj.p2.r3.rec": "Đã thông báo Giám đốc Quản lý Tài khoản (RM)",
+        "proj.p2.nba.title": "🛡️ Cảnh báo rủi ro rời bỏ:",
+        "proj.p2.nba.desc": "Hệ thống phát hiện khách hàng Á Châu giảm đột ngột lưu lượng thanh toán quốc tế qua cổng API. Mô hình AI tự động sinh đề xuất gói ưu đãi miễn phí giao dịch quốc tế và lịch hẹn gặp Giám đốc RM.",
+        "proj.p2.auto1": "✓ Đã bảo mật On-Premise dữ liệu nhạy cảm ISO 27001",
+        "proj.p2.auto2": "✓ Đã gửi thông báo mã hóa tới Giám đốc Quản lý RM",
+        "proj.p2.nba.btn": "Xem demo Churn Radar cho Ngân hàng →",
+        "proj.p3.kpi1": "Doanh Thu Copilot Hỗ Trợ",
+        "proj.p3.kpi1.sub": "↑ +42.0% từ kịch bản Upsell AI",
+        "proj.p3.kpi2": "Phiên Tư Vấn Đa Kênh",
+        "proj.p3.kpi2.sub": "Đồng bộ 85 chi nhánh & Zalo OA",
+        "proj.p3.kpi3": "Tỷ Lệ Chuyển Đổi Giỏ Hàng",
+        "proj.p3.kpi3.sub": "↑ +8.4% sau tích hợp AI Copilot",
+        "proj.p3.kpi4": "Tốc Độ Phản Hồi Trung Bình",
+        "proj.p3.kpi4.sub": "Trích xuất chân dung tức thì",
+        "proj.p3.table.head": "Luồng Tương Tác Khách Hàng Đa Kênh (Omnichannel Live Stream)",
+        "proj.p3.r1.name": "Chị Nguyễn Mai Anh (Hạng Kim Cương · 85 triệu tích lũy)",
+        "proj.p3.r1.desc": "Kênh: Zalo OA & POS Cầu Giấy · Đang xem BST thu đông mới",
+        "proj.p3.r1.badge": "Xác suất mua: 92%",
+        "proj.p3.r1.rec": "Gợi ý AI: Tặng voucher VIP 10% có hạn trong 24h",
+        "proj.p3.r2.name": "Công ty Thiết Kế Nội Thất K-Decor (Mua sỉ)",
+        "proj.p3.r2.desc": "Kênh: Website & Hotline · Yêu cầu chiết khấu 50 bộ sản phẩm",
+        "proj.p3.r2.badge": "Xác suất mua: 88%",
+        "proj.p3.r2.rec": "Gợi ý AI: Kích hoạt chính sách giá bán buôn B2B Tier 2",
+        "proj.p3.r3.name": "Anh Trần Quốc Huy (Hạng Vàng · 32 triệu tích lũy)",
+        "proj.p3.r3.desc": "Kênh: POS Quận 1 · Đang có giỏ hàng chờ tại quầy",
+        "proj.p3.r3.badge": "Xác suất mua: 84%",
+        "proj.p3.r3.rec": "Gợi ý AI: Giới thiệu phụ kiện đồng bộ kèm ưu đãi",
+        "proj.p3.nba.title": "💡 Chân dung khách hàng 360°:",
+        "proj.p3.nba.desc": "Khách hàng Mai Anh vừa ghé cửa hàng Cầu Giấy thử đồ và đang xem lại sản phẩm trên Zalo OA. Copilot đã tổng hợp sở thích kích cỡ, màu sắc và tự động soạn thảo bản nháp tư vấn sẵn sàng gửi qua Zalo trong 1 chạm.",
+        "proj.p3.auto1": "✓ Đã kiểm tra tồn kho tại chi nhánh Cầu Giấy",
+        "proj.p3.auto2": "✓ Đã đồng bộ lịch sử vào hệ thống POS toàn chuỗi",
+        "proj.p3.nba.btn": "Xem demo Copilot bán hàng đa kênh →",
         "dash.copilot.b2": "• <strong>Người có tiếng nói quyết định:</strong> Giám đốc Chuyển đổi số (Đã đồng ý ngân sách) & Trưởng phòng An ninh thông tin (Cần xem xét chứng nhận D-U-N-S và ISO 27001).",
-        "dash.copilot.b3": "• <strong>Dự thảo phản hồi AI đề xuất:</strong> Bản nháp kỹ thuật đáp ứng kiến trúc Hybrid-Cloud sẵn sàng gửi trong 1 cú click.",
         "problem.tag": "Thực trạng nhức nhối",
         "problem.title": "Vì sao 80% dự án CRM hiện nay không mang lại giá trị thực?",
         "problem.subtitle": "Lãnh đạo doanh nghiệp đầu tư hàng tỷ đồng nhưng đội ngũ bán hàng vẫn dùng Excel, và các giải pháp 'AI' quảng cáo rầm rộ chỉ là chatbot trả lời câu hỏi thông thường.",
@@ -1479,50 +1756,97 @@
         "hero.subtitle": "Liberate your sales and CS teams from 65% of manual administrative tasks, automate predictive lead scoring, and prevent churn with deeply integrated artificial intelligence.",
         "hero.cta": "Schedule 1-on-1 Expert Demo",
         "hero.trustnote": "Tailored demo on your workflow · Protected by enterprise NDA",
-        "dash.tab1": "AI Lead Scoring",
-        "dash.tab2": "Churn & Retention Radar",
-        "dash.tab3": "Omnichannel Copilot",
-        "dash.synctime": "Real-time data: Synced 12:45:00",
-        "dash.kpi1": "High-Value Pipeline",
-        "dash.kpi1.sub": "↑ +24.8% <span class='text-slate-400 font-normal'>vs last quarter</span>",
-        "dash.kpi2": "AI-Ranked Qualified Leads",
-        "dash.kpi2.sub": "100% automated routing",
-        "dash.kpi3": "Sales Win Rate",
-        "dash.kpi3.sub": "↑ +9.2% post-AI activation",
-        "dash.kpi4": "Manual Hours Saved",
-        "dash.kpi4.sub": "Per rep / month",
-        "dash.leadqueue": "Live Deal Pipeline (AI-Ranked)",
-        "dash.lead1.name": "Royal Logistics Group",
-        "dash.lead1.desc": "Size: 2,500 employees · Need: Core ERP Integration",
-        "dash.lead1.rec": "Recommendation: Send proposal in 2h",
-        "dash.lead2.name": "V-Bank International Commercial Bank",
-        "dash.lead2.desc": "Size: 8,000 employees · Need: On-premise AI Model",
-        "dash.lead2.rec": "Recommendation: Schedule CIO meeting",
-        "dash.lead3.name": "Tan Phat Retail Chain",
-        "dash.lead3.desc": "Size: 650 employees · Need: Omnichannel CRM",
-        "dash.lead3.rec": "Automated cadence active",
-        "dash.nba.badge": "just now",
-        "dash.nba.boxtitle": "💡 Buying Intent Summary:",
-        "dash.nba.boxdesc": "Royal Logistics viewed API security docs 4 times in 24h. AI model predicts 94% win probability if On-Premise vs Cloud comparison is sent today.",
-        "dash.nba.autotitle": "Automations executed:",
-        "dash.nba.auto1": "✓ Synced activity history to ERP",
-        "dash.nba.auto2": "✓ Notified Account Director via Slack",
-        "dash.nba.btn": "View demo with your sample data →",
-        "dash.churn.c1.title": "Churn Risk Alert",
-        "dash.churn.c1.val": "3 Accounts",
-        "dash.churn.c1.sub": "Detected via 40% drop in API call volume",
-        "dash.churn.c2.title": "Saved Annual ARR",
-        "dash.churn.c2.sub": "Through proactive 7-day intervention",
-        "dash.churn.c3.title": "AI Prediction Accuracy",
-        "dash.churn.c3.sub": "Trained on 500k+ enterprise events",
-        "dash.churn.action.title": "Automated retention action triggered:",
-        "dash.churn.action.desc": "Easy AI automatically alerted the CS Director, prepared a risk analysis report, and scheduled a contract review cadence for at-risk accounts.",
-        "dash.churn.action.btn": "Explore AI customer retention workflows →",
-        "dash.copilot.title": "Copilot 360° Customer Synthesis",
-        "dash.copilot.sub": "Synthesized from 48 emails & 12 recent calls",
-        "dash.copilot.b1": "• <strong>Primary Concern:</strong> Direct internal database connectivity (On-premise Oracle), zero data stored on public servers.",
+        "proj.p1.badge": "PROJECT 01 · LOGISTICS B2B",
+        "proj.p1.title": "Hoang Gia Supply Chain CRM",
+        "proj.p2.badge": "PROJECT 02 · FINTECH & BANKING",
+        "proj.p2.title": "V-Bank Churn Risk Radar",
+        "proj.p3.badge": "PROJECT 03 · OMNICHANNEL RETAIL",
+        "proj.p3.title": "Tan Phat 360° Sales Copilot",
+        "proj.p1.client": "Live deployment at Hoang Gia Logistics Group (2,500 employees)",
+        "proj.p2.client": "Live deployment at V-Bank International (8,000 employees)",
+        "proj.p3.client": "Live deployment at Tan Phat Retail Chain (85 nationwide branches)",
+        "proj.p1.status": "AI Engine: v4.2 Active · Oracle ERP Synced",
+        "proj.p2.status": "On-Premise Isolated · ISO 27001 Certified",
+        "proj.p3.status": "Realtime POS & Zalo Sync · 85 Branches",
+        "proj.sync": "Real-time data: Synced 12:45:00",
+        "proj.nba.badge": "just now",
+        "proj.auto.title": "Automations executed:",
+        "proj.p1.kpi1": "High-Value Pipeline",
+        "proj.p1.kpi1.sub": "↑ +24.8% <span class='text-slate-400 font-normal'>vs last quarter</span>",
+        "proj.p1.kpi2": "Managed B2B Contracts",
+        "proj.p1.kpi2.sub": "100% AI automated scoring",
+        "proj.p1.kpi3": "Sales Win Rate",
+        "proj.p1.kpi3.sub": "↑ +9.2% post-AI activation",
+        "proj.p1.kpi4": "Quotation Time Saved",
+        "proj.p1.kpi4.sub": "Per rep / month",
+        "proj.p1.table.head": "Logistics Deal Pipeline (AI-Ranked)",
+        "proj.p1.r1.name": "Hoang Gia Logistics Group - Hai Phong to Hamburg",
+        "proj.p1.r1.desc": "Scale: $1M+ ARR · International Ocean Freight · Core ERP Synced",
+        "proj.p1.r1.rec": "Recommendation: Send proposal within 2h",
+        "proj.p1.r2.name": "V-Logistics Global - Cat Lai to Los Angeles (LAX)",
+        "proj.p1.r2.desc": "Scale: $750k ARR · Cross-border Air Cargo",
+        "proj.p1.r2.rec": "Recommendation: Schedule partner CIO meeting",
+        "proj.p1.r3.name": "Tan Cang Overland - Noi Bai to Incheon",
+        "proj.p1.r3.desc": "Scale: $480k ARR · Warehousing & Multimodal Depot",
+        "proj.p1.r3.rec": "Automated cadence active",
+        "proj.p1.nba.title": "💡 Buying Intent Summary:",
+        "proj.p1.nba.desc": "Hoang Gia Group queried rate APIs 4 times in 24h. AI predicts 94% closing probability if On-Premise vs Cloud proposal is dispatched today.",
+        "proj.p1.auto1": "✓ Synced activity history into Oracle ERP",
+        "proj.p1.auto2": "✓ Notified Operations Director via Slack",
+        "proj.p1.nba.btn": "Explore Logistics Demo with Your Data →",
+        "proj.p2.kpi1": "Preserved Enterprise ARR",
+        "proj.p2.kpi1.sub": "↑ +31.5% retained successfully",
+        "proj.p2.kpi2": "VIP Accounts Monitored",
+        "proj.p2.kpi2.sub": "24/7 API usage monitoring",
+        "proj.p2.kpi3": "Churn Prediction Accuracy",
+        "proj.p2.kpi3.sub": "Trained on 850k+ data points",
+        "proj.p2.kpi4": "Average Intervention Time",
+        "proj.p2.kpi4.sub": "3.5x faster than manual audit",
+        "proj.p2.table.head": "Corporate Accounts at Risk (AI Churn Radar)",
+        "proj.p2.r1.name": "Asia Capital Financial Holding",
+        "proj.p2.r1.desc": "Scale: $45M CASA · API calls dropped 42% in 14 days",
+        "proj.p2.r1.risk": "Churn Risk: 88% (Critical)",
+        "proj.p2.r1.rec": "Recommendation: Meet CFO & apply fee waiver",
+        "proj.p2.r2.name": "Do Thanh Real Estate Investment Corp",
+        "proj.p2.r2.desc": "Scale: $28M Credit · Transaction volume down 35%",
+        "proj.p2.r2.risk": "Churn Risk: 74% (High)",
+        "proj.p2.r2.rec": "Recommendation: Restructure Q3 credit facility",
+        "proj.p2.r3.name": "Song Hong Import-Export Corporation",
+        "proj.p2.r3.desc": "Scale: $19M FX · 2 sub-accounts inactive",
+        "proj.p2.r3.risk": "Churn Risk: 63% (Moderate)",
+        "proj.p2.r3.rec": "Relationship Manager (RM) alerted",
+        "proj.p2.nba.title": "🛡️ Churn Risk Alert:",
+        "proj.p2.nba.desc": "Sudden 42% drop in international payment API volume detected for Asia Capital. AI automatically drafted a transaction fee concession package and RM consultation schedule.",
+        "proj.p2.auto1": "✓ Secured sensitive data on On-Premise ISO 27001 tier",
+        "proj.p2.auto2": "✓ Dispatched encrypted alert to Relationship Manager",
+        "proj.p2.nba.btn": "Explore Banking Churn Radar Demo →",
+        "proj.p3.kpi1": "Copilot-Assisted Revenue",
+        "proj.p3.kpi1.sub": "↑ +42.0% via AI Upsell scripts",
+        "proj.p3.kpi2": "Omnichannel Conversations",
+        "proj.p3.kpi2.sub": "Synced across 85 stores & Zalo OA",
+        "proj.p3.kpi3": "Cart Conversion Rate",
+        "proj.p3.kpi3.sub": "↑ +8.4% post-AI Copilot rollout",
+        "proj.p3.kpi4": "Average Response Latency",
+        "proj.p3.kpi4.sub": "Instant 360° customer profile",
+        "proj.p3.table.head": "Live Omnichannel Interactions (360° Stream)",
+        "proj.p3.r1.name": "Ms. Nguyen Mai Anh (Diamond Tier · $3,500 LTV)",
+        "proj.p3.r1.desc": "Channel: Zalo OA & Cau Giay Store · Browsing Fall Collection",
+        "proj.p3.r1.badge": "Purchase Intent: 92%",
+        "proj.p3.r1.rec": "AI Suggestion: Send 10% VIP voucher valid for 24h",
+        "proj.p3.r2.name": "K-Decor Interior Architecture (B2B Bulk)",
+        "proj.p3.r2.desc": "Channel: Web & Hotline · Requesting wholesale quote for 50 units",
+        "proj.p3.r2.badge": "Purchase Intent: 88%",
+        "proj.p3.r2.rec": "AI Suggestion: Apply Tier 2 Wholesale Pricing Policy",
+        "proj.p3.r3.name": "Mr. Tran Quoc Huy (Gold Tier · $1,300 LTV)",
+        "proj.p3.r3.desc": "Channel: District 1 Store POS · Checkout in progress",
+        "proj.p3.r3.badge": "Purchase Intent: 84%",
+        "proj.p3.r3.rec": "AI Suggestion: Cross-sell matching accessories",
+        "proj.p3.nba.title": "💡 360° Customer Profile:",
+        "proj.p3.nba.desc": "Customer Mai Anh tried on items at Cau Giay store and is reviewing them on Zalo OA. Copilot synthesized size/color preferences and drafted a personalized recommendation ready to send in 1 click.",
+        "proj.p3.auto1": "✓ Verified inventory across Cau Giay branch",
+        "proj.p3.auto2": "✓ Synced customer purchase history into retail POS",
+        "proj.p3.nba.btn": "Explore Omnichannel Copilot Demo →",
         "dash.copilot.b2": "• <strong>Key Decision Makers:</strong> Chief Digital Officer (Budget approved) & CISO (Reviewing D-U-N-S and ISO 27001 credentials).",
-        "dash.copilot.b3": "• <strong>Suggested AI Draft:</strong> Technical hybrid-cloud architecture brief ready to dispatch in 1 click.",
         "problem.tag": "The Enterprise Reality",
         "problem.title": "Why 80% of Enterprise CRM Projects Fail to Deliver ROI",
         "problem.subtitle": "Leaders invest millions into systems only for sales reps to rely on spreadsheets, while marketed 'AI' tools turn out to be basic chatbot wrappers.",
@@ -1717,20 +2041,89 @@
       menu.classList.toggle('hidden');
     }
 
-    // Dashboard Interactive Tabs
-    function switchDashboardTab(tab) {
-      const tabs = ['leads', 'churn', 'copilot'];
-      tabs.forEach(t => {
-        const view = document.getElementById(`dash-view-${t}`);
-        const btn = document.getElementById(`tab-btn-${t}`);
-        if (t === tab) {
-          view.classList.remove('hidden'); view.classList.remove('tab-content-enter'); void view.offsetWidth; view.classList.add('tab-content-enter');
-          btn.className = 'px-3.5 py-1.5 rounded-md bg-white text-brand-navy shadow-sm border border-brand-border';
+    // 3 Enterprise Project Showcase Views Switcher
+    let currentProject = 0;
+    const projectConfigs = [
+      {
+        url: "logistics-crm.easyai.internal/pipeline-automation",
+        statusKey: "proj.p1.status",
+        clientKey: "proj.p1.client"
+      },
+      {
+        url: "banking-portal.easyai.internal/risk-churn-radar",
+        statusKey: "proj.p2.status",
+        clientKey: "proj.p2.client"
+      },
+      {
+        url: "retail-copilot.easyai.internal/sales-copilot-360",
+        statusKey: "proj.p3.status",
+        clientKey: "proj.p3.client"
+      }
+    ];
+
+    function switchProjectView(index) {
+      currentProject = (index + 3) % 3;
+      const currentLang = document.documentElement.lang || 'vi';
+      const dict = translations[currentLang] || translations.vi;
+
+      for (let i = 0; i < 3; i++) {
+        const view = document.getElementById(`project-view-${i}`);
+        const btn = document.getElementById(`project-btn-${i}`);
+        if (i === currentProject) {
+          if (view) {
+            view.classList.remove('hidden');
+            view.classList.remove('tab-content-enter');
+            void view.offsetWidth;
+            view.classList.add('tab-content-enter');
+          }
+          if (btn) {
+            btn.className = "project-pill px-3.5 sm:px-4 py-2 rounded-xl bg-white text-brand-navy shadow-sm border border-brand-border font-bold text-xs sm:text-sm flex items-center gap-2 transition-all whitespace-nowrap";
+            btn.setAttribute('aria-selected', 'true');
+            const badge = btn.querySelector('[data-i18n$=".badge"]');
+            if (badge) badge.className = "text-[10px] text-brand-primary uppercase font-bold tracking-wider";
+            const title = btn.querySelector('[data-i18n$=".title"]');
+            if (title) title.className = "font-bold text-brand-navy";
+          }
         } else {
-          view.classList.add('hidden');
-          btn.className = 'px-3.5 py-1.5 rounded-md text-slate-600 hover:text-brand-navy';
+          if (view) view.classList.add('hidden');
+          if (btn) {
+            btn.className = "project-pill px-3.5 sm:px-4 py-2 rounded-xl text-slate-600 hover:text-brand-navy hover:bg-white/60 font-medium text-xs sm:text-sm flex items-center gap-2 transition-all whitespace-nowrap";
+            btn.setAttribute('aria-selected', 'false');
+            const badge = btn.querySelector('[data-i18n$=".badge"]');
+            if (badge) badge.className = "text-[10px] text-slate-500 uppercase font-bold tracking-wider";
+            const title = btn.querySelector('[data-i18n$=".title"]');
+            if (title) title.className = "font-medium text-brand-navy";
+          }
         }
+      }
+
+      // Update Carousel Dots
+      const dots = document.querySelectorAll('#project-dots span');
+      dots.forEach((dot, idx) => {
+        dot.className = (idx === currentProject)
+          ? "w-3 h-2.5 rounded-full bg-brand-primary transition-all cursor-pointer"
+          : "w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all cursor-pointer";
       });
+
+      // Update Mockup Bar Info
+      const cfg = projectConfigs[currentProject];
+      const urlEl = document.getElementById('project-mockup-url');
+      const statusEl = document.getElementById('project-mockup-status');
+      const clientEl = document.getElementById('project-mockup-client');
+
+      if (urlEl) urlEl.textContent = cfg.url;
+      if (statusEl) {
+        statusEl.setAttribute('data-i18n', cfg.statusKey);
+        statusEl.innerHTML = dict[cfg.statusKey] || '';
+      }
+      if (clientEl) {
+        clientEl.setAttribute('data-i18n', cfg.clientKey);
+        clientEl.innerHTML = dict[cfg.clientKey] || '';
+      }
+    }
+
+    function stepProjectView(dir) {
+      switchProjectView(currentProject + dir);
     }
 
     // FAQ Accordion Toggle
