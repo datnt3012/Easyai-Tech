@@ -29,18 +29,22 @@
         "showcase.badge": "THỰC TẾ TRIỂN KHAI · DOANH NGHIỆP LỚN",
         "showcase.title": "Một Vài Dự Án Tiêu Biểu Của Easy&nbsp;AI",
         "showcase.subtitle": "Khám phá dữ liệu nghiệp vụ thực tế, cấu trúc KPI theo ngành và các hành động tự động hóa AI đã vận hành tại các đối tác quy mô lớn.",
-        "proj.p0.badge": "DỰ ÁN 01 · LEGALTECH (VERDICT AI)",
         "proj.p0.flagship": "⭐ Dự án Flagship",
         "proj.p0.title": "Verdict — Trợ Lý Pháp Lý AI",
-        "proj.p0.client": "Triển khai thực tế tại Liên minh Năng lượng & Xây dựng Tín Phát (Audit danh mục HĐ $185M+)",
+        "proj.p0.client": "Triển khai thực tế tại một Tập đoàn Năng lượng & Xây dựng hàng đầu (Audit danh mục HĐ $185M+)",
         "proj.p0.status": "AI Engine: Legal LLM Fine-Tuned · On-Premise Isolated · VIAC / ICC Ready",
         "proj.p0.nba.btn": "Trải nghiệm thử Verdict Legal AI →",
-        "proj.p1.badge": "DỰ ÁN 02 · QUẢN LÝ KHO VẬN",
         "proj.p1.title": "VienTinSea Warehouse",
         "proj.p1.client": "Triển khai thực tế tại VienTinSea Warehouse",
         "proj.p1.status": "AI Engine: v4.2 Active · Đồng bộ WMS Realtime",
         "proj.sync": "Dữ liệu thời gian thực: Đồng bộ 12:45:00",
         "proj.p1.nba.btn": "Xem demo bài toán Quản lý Kho vận của bạn →",
+        "proj.p2.title": "VienTinSea Contract Hub",
+        "proj.p2.client": "Triển khai thực tế tại VienTinSea Contract Hub",
+        "proj.p2.status": "AI Engine: v4.2 Active · Đồng bộ Chữ ký số Realtime",
+        "proj.p2.nba.btn": "Xem demo bài toán Quản lý Hợp đồng của bạn →",
+        "proj.p1.badge.short": "Quản lý Kho vận",
+        "proj.p2.badge.short": "Quản lý Hợp đồng",
         "dash.copilot.b2": "• <strong>Người có tiếng nói quyết định:</strong> Giám đốc Chuyển đổi số (Đã đồng ý ngân sách) & Trưởng phòng An ninh thông tin (Cần xem xét chứng nhận D-U-N-S và ISO 27001).",
         "problem.tag": "Thực trạng nhức nhối",
         "problem.title": "Vì sao 80% dự án CRM hiện nay không mang lại giá trị thực?",
@@ -256,18 +260,22 @@
         "showcase.badge": "PRODUCTION DEPLOYMENTS · ENTERPRISE TIER",
         "showcase.title": "Selected Enterprise AI Deployments by Easy&nbsp;AI",
         "showcase.subtitle": "Explore live production metrics, industry-specific KPIs, and autonomous AI actions deployed across enterprise partners.",
-        "proj.p0.badge": "PROJECT 01 · LEGALTECH (VERDICT AI)",
         "proj.p0.flagship": "⭐ Flagship Project",
         "proj.p0.title": "Verdict — AI Legal Intelligence",
-        "proj.p0.client": "Live deployment at Tin Phat Energy & Infrastructure Group ($185M+ contract audit portfolio)",
+        "proj.p0.client": "Live deployment at a leading Energy & Infrastructure Group ($185M+ contract audit portfolio)",
         "proj.p0.status": "AI Engine: Legal LLM Fine-Tuned · On-Premise Isolated · VIAC / ICC Ready",
         "proj.p0.nba.btn": "Explore Verdict Legal AI Demo →",
-        "proj.p1.badge": "PROJECT 02 · WAREHOUSE MANAGEMENT",
         "proj.p1.title": "VienTinSea Warehouse",
         "proj.p1.client": "Live deployment at VienTinSea Warehouse",
         "proj.p1.status": "AI Engine: v4.2 Active · Realtime WMS Sync",
         "proj.sync": "Real-time data: Synced 12:45:00",
         "proj.p1.nba.btn": "Explore Warehouse Management Demo →",
+        "proj.p2.title": "VienTinSea Contract Hub",
+        "proj.p2.client": "Live deployment at VienTinSea Contract Hub",
+        "proj.p2.status": "AI Engine: v4.2 Active · Realtime E-Signature Sync",
+        "proj.p2.nba.btn": "Explore Contract Management Demo →",
+        "proj.p1.badge.short": "Warehouse Management",
+        "proj.p2.badge.short": "Contract Management",
         "dash.copilot.b2": "• <strong>Key Decision Makers:</strong> Chief Digital Officer (Budget approved) & CISO (Reviewing D-U-N-S and ISO 27001 credentials).",
         "problem.tag": "The Enterprise Reality",
         "problem.title": "Why 80% of Enterprise CRM Projects Fail to Deliver ROI",
@@ -518,7 +526,7 @@
       menu.classList.toggle('hidden');
     }
 
-    // 2 Enterprise Project Showcase Views Switcher
+    // 3 Enterprise Project Showcase Views Switcher
     let currentProject = 0;
     const projectConfigs = [
       {
@@ -530,15 +538,20 @@
         url: "warehub-vientinsea.easyai-wallet.com",
         statusKey: "proj.p1.status",
         clientKey: "proj.p1.client"
+      },
+      {
+        url: "contracthub.vientinsea.com/dashboard",
+        statusKey: "proj.p2.status",
+        clientKey: "proj.p2.client"
       }
     ];
 
     function switchProjectView(index) {
-      currentProject = (index + 2) % 2;
+      currentProject = (index + 3) % 3;
       const currentLang = document.documentElement.lang || 'vi';
       const dict = translations[currentLang] || translations.vi;
 
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 3; i++) {
         const view = document.getElementById(`project-view-${i}`);
         const btn = document.getElementById(`project-btn-${i}`);
         if (i === currentProject) {
@@ -549,22 +562,18 @@
             view.classList.add('tab-content-enter');
           }
           if (btn) {
-            btn.className = "project-pill px-3.5 sm:px-4 py-2 rounded-xl bg-white text-brand-navy shadow-sm border border-brand-border font-bold text-xs sm:text-sm flex items-center gap-2 transition-all whitespace-nowrap";
+            btn.className = "project-pill p-3.5 rounded-xl bg-white text-brand-navy shadow-sm border border-brand-border font-bold text-sm flex items-center gap-3 transition-all min-w-0";
             btn.setAttribute('aria-selected', 'true');
-            const badge = btn.querySelector('[data-i18n$=".badge"]');
-            if (badge) badge.className = "text-[10px] text-brand-primary uppercase font-bold tracking-wider";
             const title = btn.querySelector('[data-i18n$=".title"]');
-            if (title) title.className = "font-bold text-brand-navy";
+            if (title) title.className = "font-bold text-brand-navy truncate";
           }
         } else {
           if (view) view.classList.add('hidden');
           if (btn) {
-            btn.className = "project-pill px-3.5 sm:px-4 py-2 rounded-xl text-slate-600 hover:text-brand-navy hover:bg-white/60 font-medium text-xs sm:text-sm flex items-center gap-2 transition-all whitespace-nowrap";
+            btn.className = "project-pill p-3.5 rounded-xl bg-slate-100/80 text-slate-600 hover:text-brand-navy hover:bg-white font-medium text-sm flex items-center gap-3 transition-all min-w-0";
             btn.setAttribute('aria-selected', 'false');
-            const badge = btn.querySelector('[data-i18n$=".badge"]');
-            if (badge) badge.className = "text-[10px] text-slate-500 uppercase font-bold tracking-wider";
             const title = btn.querySelector('[data-i18n$=".title"]');
-            if (title) title.className = "font-medium text-brand-navy";
+            if (title) title.className = "font-medium text-brand-navy truncate";
           }
         }
       }
@@ -594,7 +603,7 @@
       }
 
       // Sync 3D deck card focus state
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 3; i++) {
         const card = document.getElementById(`deck-card-${i}`);
         if (card) {
           if (i === currentProject) card.classList.add('focused');

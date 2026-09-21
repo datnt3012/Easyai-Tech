@@ -237,7 +237,7 @@
           <div class="mx-auto w-full max-w-[480px] lg:max-w-none">
             
             <!-- 3D Card Deck Container -->
-            <div class="relative w-full h-[330px] sm:h-[360px] lg:h-[380px] card-deck-container select-none">
+            <div class="relative w-full h-[360px] sm:h-[380px] lg:h-[390px] card-deck-container select-none">
               
               <!-- THẺ 1: DỰ ÁN VERDICT - LEGALTECH ENTERPRISE - Tilted -7deg -->
               <div onclick="focusProjectView(0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();focusProjectView(0);}" class="deck-card deck-card-1 group" id="deck-card-0" role="button" tabindex="0" title="Click để xem chi tiết dự án Trợ lý Pháp lý Verdict" aria-label="Xem chi tiết dự án Verdict — Trợ lý Pháp lý AI">
@@ -290,12 +290,37 @@
                 </div>
               </div>
 
+              <!-- THẺ 3: DỰ ÁN QUẢN LÝ HỢP ĐỒNG (VIENTINSEA CONTRACT HUB) - Tilted -3deg -->
+              <div onclick="focusProjectView(2)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();focusProjectView(2);}" class="deck-card deck-card-3 group" id="deck-card-2" role="button" tabindex="0" title="Click để xem chi tiết dự án Quản lý Hợp đồng VienTinSea" aria-label="Xem chi tiết dự án VienTinSea Contract Hub">
+                <span class="sheen-sweep"></span>
+                <!-- Mini Window Bar -->
+                <div class="bg-brand-navy px-3 py-2 border-b border-brand-navyLight flex items-center justify-between">
+                  <div class="flex items-center space-x-1.5">
+                    <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                    <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span class="ml-2 text-[10px] font-mono text-slate-300 truncate max-w-[120px] sm:max-w-[150px]">contracthub.vientinsea.com</span>
+                  </div>
+                  <div class="flex items-center gap-1 bg-white/10 px-1.5 py-0.5 rounded text-[10px] font-bold text-white tracking-wide">
+                    <span>EasyAI.vn</span>
+                  </div>
+                </div>
+                <!-- Card Body: Real product screenshot -->
+                <div class="bg-white">
+                  <img src="assets/img/projects/contracthub-01.png" alt="VienTinSea Contract Hub, giao diện Quản lý Hợp đồng" class="w-full h-auto block" loading="lazy" width="1902" height="994">
+                  <div class="px-3 py-2 flex items-center justify-between text-[10px] text-slate-500 border-t border-slate-100">
+                    <span class="font-bold text-brand-navy truncate" data-i18n="proj.p2.title">VienTinSea Contract Hub</span>
+                    <span class="text-brand-primary font-bold group-hover:translate-x-0.5 transition-transform shrink-0 ml-2">Chi tiết →</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
             <!-- Bottom Showcase Bar (XimiTech Style) -->
             <a href="#showcase-details" class="group mt-6 flex items-center justify-between gap-4 border-t border-slate-200/90 pt-4 text-sm font-bold text-slate-700 transition-colors hover:text-brand-primary">
               <span class="flex items-center gap-3">
-                <span class="text-brand-primary font-black text-base">2+</span>
+                <span class="text-brand-primary font-black text-base">3+</span>
                 <span data-i18n="hero.banner.link">dự án tiêu biểu triển khai theo ngành</span>
               </span>
               <span class="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-slate-300 text-slate-600 transition-all duration-300 group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:text-white shadow-sm">
@@ -335,44 +360,48 @@
       <div class="relative max-w-5xl mx-auto">
 
         <!-- Project Selector Navigation (Tabs + Carousel Controls) -->
-        <div class="mb-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-          <!-- 4 Project Pills -->
-          <div class="flex items-center bg-slate-100/95 p-1 rounded-2xl border border-slate-200/90 shadow-inner overflow-x-auto" role="tablist" aria-label="Project selector">
+        <div class="mb-5">
+          <!-- 3 Project Cards (equal-width grid, wraps on mobile) -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" role="tablist" aria-label="Project selector">
             <!-- Project 0 Button: Verdict AI -->
-            <button onclick="switchProjectView(0)" id="project-btn-0" class="project-pill px-3.5 sm:px-4 py-2 rounded-xl bg-white text-brand-navy shadow-sm border border-brand-border font-bold text-xs sm:text-sm flex items-center gap-2 transition-all whitespace-nowrap" role="tab" aria-selected="true">
-              <span class="text-base">⚖️</span>
-              <div class="text-left leading-tight">
-                <div class="text-[10px] text-brand-primary uppercase font-bold tracking-wider flex items-center gap-1.5">
-                  <span data-i18n="proj.p0.badge">DỰ ÁN 01 · LEGALTECH (VERDICT AI)</span>
-                  <span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-brand-primary text-white text-[9px] font-bold normal-case tracking-normal" data-i18n="proj.p0.flagship">⭐ Flagship</span>
-                </div>
-                <div class="font-bold text-brand-navy" data-i18n="proj.p0.title">Verdict — Trợ Lý Pháp Lý AI</div>
+            <button onclick="switchProjectView(0)" id="project-btn-0" class="project-pill p-3.5 rounded-xl bg-white text-brand-navy shadow-sm border border-brand-border font-bold text-sm flex items-center gap-3 transition-all min-w-0" role="tab" aria-selected="true">
+              <span class="text-xl shrink-0">⚖️</span>
+              <div class="text-left leading-tight min-w-0">
+                <div class="font-bold text-brand-navy truncate" data-i18n="proj.p0.title">Verdict — Trợ Lý Pháp Lý AI</div>
+                <span class="inline-flex items-center mt-1 px-1.5 py-0.5 rounded-full bg-brand-primary text-white text-[9px] font-bold" data-i18n="proj.p0.flagship">⭐ Flagship</span>
               </div>
             </button>
             <!-- Project 1 Button: Logistics -->
-            <button onclick="switchProjectView(1)" id="project-btn-1" class="project-pill px-3.5 sm:px-4 py-2 rounded-xl text-slate-600 hover:text-brand-navy hover:bg-white/60 font-medium text-xs sm:text-sm flex items-center gap-2 transition-all whitespace-nowrap" role="tab" aria-selected="false">
-              <span class="text-base">📦</span>
-              <div class="text-left leading-tight">
-                <div class="text-[10px] text-slate-500 uppercase font-bold tracking-wider" data-i18n="proj.p1.badge">DỰ ÁN 02 · QUẢN LÝ KHO VẬN</div>
-                <div class="font-medium text-brand-navy" data-i18n="proj.p1.title">VienTinSea Warehouse</div>
+            <button onclick="switchProjectView(1)" id="project-btn-1" class="project-pill p-3.5 rounded-xl bg-slate-100/80 text-slate-600 hover:text-brand-navy hover:bg-white font-medium text-sm flex items-center gap-3 transition-all min-w-0" role="tab" aria-selected="false">
+              <span class="text-xl shrink-0">📦</span>
+              <div class="text-left leading-tight min-w-0">
+                <div class="font-medium text-brand-navy truncate" data-i18n="proj.p1.title">VienTinSea Warehouse</div>
+                <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-wide mt-0.5" data-i18n="proj.p1.badge.short">Quản lý Kho vận</div>
+              </div>
+            </button>
+            <!-- Project 2 Button: Contract Hub -->
+            <button onclick="switchProjectView(2)" id="project-btn-2" class="project-pill p-3.5 rounded-xl bg-slate-100/80 text-slate-600 hover:text-brand-navy hover:bg-white font-medium text-sm flex items-center gap-3 transition-all min-w-0" role="tab" aria-selected="false">
+              <span class="text-xl shrink-0">📄</span>
+              <div class="text-left leading-tight min-w-0">
+                <div class="font-medium text-brand-navy truncate" data-i18n="proj.p2.title">VienTinSea Contract Hub</div>
+                <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-wide mt-0.5" data-i18n="proj.p2.badge.short">Quản lý Hợp đồng</div>
               </div>
             </button>
           </div>
 
           <!-- Carousel Controls: Dots & Prev/Next Arrows -->
-          <div class="flex items-center justify-between md:justify-end gap-3 px-1">
+          <div class="flex items-center justify-center gap-4 mt-3.5">
+            <button onclick="stepProjectView(-1)" class="p-1.5 rounded-lg text-slate-400 hover:text-brand-navy hover:bg-slate-100 transition-all focus:outline-none focus:ring-2 focus:ring-brand-primary" aria-label="Previous project" title="Dự án trước">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
             <div class="flex items-center gap-1.5" id="project-dots">
               <span class="w-3 h-2.5 rounded-full bg-brand-primary transition-all cursor-pointer" onclick="switchProjectView(0)" title="Dự án 1: Verdict Legal AI"></span>
               <span class="w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all cursor-pointer" onclick="switchProjectView(1)" title="Dự án 2: Logistics"></span>
+              <span class="w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all cursor-pointer" onclick="switchProjectView(2)" title="Dự án 3: Contract Hub"></span>
             </div>
-            <div class="flex items-center gap-1.5">
-              <button onclick="stepProjectView(-1)" class="p-2 rounded-lg bg-white hover:bg-slate-100 border border-slate-200 text-brand-navy shadow-sm transition-all focus:outline-none" aria-label="Previous project" title="Dự án trước">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-              </button>
-              <button onclick="stepProjectView(1)" class="p-2 rounded-lg bg-white hover:bg-slate-100 border border-slate-200 text-brand-navy shadow-sm transition-all focus:outline-none" aria-label="Next project" title="Dự án tiếp theo">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </button>
-            </div>
+            <button onclick="stepProjectView(1)" class="p-1.5 rounded-lg text-slate-400 hover:text-brand-navy hover:bg-slate-100 transition-all focus:outline-none focus:ring-2 focus:ring-brand-primary" aria-label="Next project" title="Dự án tiếp theo">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
           </div>
         </div>
 
@@ -402,7 +431,7 @@
           <div class="bg-brand-bgLight px-6 py-2.5 border-b border-brand-border flex flex-wrap items-center justify-between gap-3 text-xs">
             <div class="flex items-center gap-2 text-slate-700">
               <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
-              <span id="project-mockup-client" class="font-semibold text-brand-navy" data-i18n="proj.p0.client">Triển khai thực tế tại Liên minh Năng lượng & Xây dựng Tín Phát (Audit danh mục HĐ $185M+)</span>
+              <span id="project-mockup-client" class="font-semibold text-brand-navy" data-i18n="proj.p0.client">Triển khai thực tế tại một Tập đoàn Năng lượng & Xây dựng hàng đầu (Audit danh mục HĐ $185M+)</span>
             </div>
             <span class="text-brand-navyMuted font-mono" data-i18n="proj.sync">Dữ liệu thời gian thực: Đồng bộ 12:45:00</span>
           </div>
@@ -449,6 +478,20 @@
             </div>
           </div>
 
+          <!-- ============================================================== -->
+          <!-- KHUNG VIEW 03: DỰ ÁN QUẢN LÝ HỢP ĐỒNG (VIENTINSEA CONTRACT HUB) -->
+          <!-- ============================================================== -->
+          <div id="project-view-2" class="p-6 hidden">
+            <!-- Real product screenshot -->
+            <div class="rounded-xl border border-brand-border overflow-hidden bg-slate-50">
+              <img src="assets/img/projects/contracthub-01.png" alt="Ảnh chụp giao diện Quản lý Hợp đồng VienTinSea" class="w-full h-auto block" loading="lazy" width="1902" height="994">
+            </div>
+            <div class="mt-5">
+              <a href="#demo-form" class="block text-center w-full py-2.5 rounded-lg bg-brand-navy text-white text-xs font-bold hover:bg-brand-navyLight transition-colors" data-i18n="proj.p2.nba.btn">
+                Xem demo bài toán Quản lý Hợp đồng của bạn →
+              </a>
+            </div>
+          </div>
 
         </div>
       </div>
