@@ -626,10 +626,11 @@
 
     // Real product screenshot galleries (per project)
     const projectGalleries = [
-      ['assets/img/projects/verdict-01.png', 'assets/img/projects/verdict-02.png', 'assets/img/projects/verdict-03.png'],
-      ['assets/img/projects/logistics-01.png']
+      ['assets/img/projects/verdict-01.png', 'assets/img/projects/verdict-02.png', 'assets/img/projects/verdict-03.png', 'assets/img/projects/verdict-04.png'],
+      ['assets/img/projects/logistics-01.png', 'assets/img/projects/logistics-02.png', 'assets/img/projects/logistics-03.png'],
+      ['assets/img/projects/contracthub-01.png', 'assets/img/projects/contracthub-02.png', 'assets/img/projects/contracthub-03.png']
     ];
-    let currentGalleryIndex = [0, 0];
+    let currentGalleryIndex = [0, 0, 0];
 
     function setGalleryImage(projectIdx, imgIdx) {
       const imgs = projectGalleries[projectIdx];
