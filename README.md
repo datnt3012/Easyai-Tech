@@ -8,7 +8,7 @@ Easy AI is a next-generation enterprise CRM platform built natively on artificia
 
 - **Entity:** EASY AI TECHNOLOGY JOINT STOCK COMPANY
 - **D-U-N-S® Registered:** 67-384-8050
-- **Domain:** [easyai-tech.com](https://easyai-tech.com)
+- **Domain:** [home.easyai-wallet.com](https://home.easyai-wallet.com)
 
 ## ✨ Key Features
 
