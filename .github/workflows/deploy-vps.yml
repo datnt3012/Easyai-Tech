@@ -1,0 +1,82 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# A second push landing mid-deploy waits its turn instead of racing the first.
+concurrency:
+  group: deploy-vps
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CF_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # No build step for this site; this only stops a syntax error from reaching production.
+      - name: Check JS syntax
+        run: node --check assets/js/app.js
+
+      # Only what the site serves. Brand source files (AI / PDF / design folders)
+      # stay out of the web root.
+      - name: Package site
+        run: |
+          set -e
+          mkdir dist
+          cp index.html dist/
+          cp deploy/web.config dist/
+          rsync -a \
+            --exclude='AI/' --exclude='PDF/' --exclude='2x/' --exclude='3x/' --exclude='SVG/' \
+            --exclude='*.ai' --exclude='*.pdf' --exclude='.DS_Store' \
+            assets dist/
+          tar czf site-dist.tar.gz -C dist .
+
+      - name: Deploy to Windows VPS
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          # Forward slashes only, e.g. C:/easyai-deploy - a literal backslash path
+          # confuses scp's user@host:path parsing.
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+          IIS_WEB_ROOT: ${{ vars.IIS_WEB_ROOT }}
+        run: |
+          set -e
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          # Clean trailing CR/LF characters from variables/secrets
+          DEPLOY_PATH=$(echo -n "$DEPLOY_PATH" | tr -d '\r\n')
+          IIS_WEB_ROOT=$(echo -n "$IIS_WEB_ROOT" | tr -d '\r\n')
+
+          scp -i ~/.ssh/deploy_key \
+            deploy/remote-deploy.ps1 \
+            site-dist.tar.gz \
+            "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
+
+          # Base64 (UTF-16LE) so quoting survives Windows OpenSSH's default shell.
+          PS_CMD="& '$DEPLOY_PATH/remote-deploy.ps1' -DeployPath '$DEPLOY_PATH' -WebRoot '$IIS_WEB_ROOT'"
+          ENCODED_CMD=$(python3 -c "import sys, base64; print(base64.b64encode(sys.argv[1].encode('utf-16le')).decode('ascii'))" "$PS_CMD")
+
+          ssh -i ~/.ssh/deploy_key "$DEPLOY_USER@$DEPLOY_HOST" \
+            "powershell -NoProfile -ExecutionPolicy Bypass -EncodedCommand $ENCODED_CMD"
+
+      # Optional: runs only when both Cloudflare secrets exist.
+      - name: Purge Cloudflare cache
+        if: ${{ env.CF_API_TOKEN != '' && env.CF_ZONE_ID != '' }}
+        run: |
+          curl -fsS -X POST "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/purge_cache" \
+            -H "Authorization: Bearer ${CF_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}'

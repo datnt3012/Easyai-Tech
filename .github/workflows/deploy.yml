@@ -1,8 +1,6 @@
 name: Deploy Easy AI Landing Page to GitHub Pages
 
 on:
-  push:
-    branches: ["main"]
   workflow_dispatch:
 
 permissions:
